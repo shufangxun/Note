@@ -2,7 +2,7 @@
 
 ## 符号定义
 
-$Softmaxloss = crossEntropy(Softmax(z_{i}))$  
+$Softmaxloss = CE(Softmax(z_{i}))$  
 
 设 $x_{i}, z_{i}, q_{i}$ 分别是原始输入、神经元加权、经过Softmax归一化
 
@@ -14,7 +14,7 @@ $Softmaxloss = crossEntropy(Softmax(z_{i}))$
 
 $$\frac{\partial Loss}{\partial w} = \frac{\partial Loss}{\partial q} \cdot \frac{\partial q}{\partial z}\cdot \frac{\partial z}{\partial w}$$
 
-$\frac{\partial z}{\partial w}$ 已知，重点是求前面两项$\frac{\partial Loss}{\partial q} \cdot \frac{\partial q}{\partial z}$
+注意 $\frac{\partial z}{\partial w}$ 已知，重点是求前面两项$\frac{\partial Loss}{\partial q} \cdot \frac{\partial q}{\partial z}$
 
 - $\frac{\partial Loss}{\partial q}$ 是交叉熵函数求导  
 交叉熵只有$p_{k}=1$才有损失累加，所以只针对$q_{k}$
@@ -55,11 +55,3 @@ $$
 - 对于选择softmax还是k个logistics回归，取决于所有类别之间是否互斥。
   - 所有类别之间明显互斥用Softmax；
   - 所有类别之间不互斥有交叉的情况下最好用k个logistics分类器。
-
-## 为什么分类问题用交叉熵而不是MSE
-
-- 交叉熵是凸函数，MSE是非凸函数
-  - [使用凸函数可以求得全局极小值点，用欧氏距离则无法保证](https://www.zhihu.com/question/314185485)
-  - 对神经网络来说，二者都不是凸优化，但用后者在收敛速度，收敛效果上更优，这也是本质问题  
-- 交叉熵梯度传播友好，MSE 有梯度消失风险
-- 交叉熵只针对正样本，MSE不仅针对正样本，还要平均负样本，这在分类问题中没有必要

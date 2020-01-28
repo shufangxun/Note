@@ -47,11 +47,11 @@ $$
 D = max(z_{1},z_{2}....z_{n})
 $$
 
-## Softmax 和 多个 Logistic 区别
+## SoftmaxLoss 和 多个 Logistic 区别
 
-普通的 Logstic 回归是二分类问题，而 Softmax 是多分类问题，要想实现多分类，需要改进 Logistic 回归，具体做法是：
+普通的Logstic回归是二分类问题，而SoftmaxLoss是多分类问题，要想实现多分类，需要改进Logistic回归，具体做法是：
 
 - 每个类别都建立一个二分类器，属于该类别的为1，其他为０
 - 对于选择softmax还是k个logistics回归，取决于所有类别之间是否互斥。
-  - 所有类别之间明显互斥用Softmax；
+  - 所有类别之间明显互斥用SoftmaxLoss；
   - 所有类别之间不互斥有交叉的情况下最好用k个logistics分类器。

@@ -2,7 +2,7 @@
 
 ## 符号定义
 
-$Softmaxloss = CE(Softmax(z_{i}))$  
+$Loss = CE(Softmax(z_{i}))$  
 
 设 $x_{i}, z_{i}, q_{i}$ 分别是原始输入、神经元加权、经过Softmax归一化
 
